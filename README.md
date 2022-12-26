@@ -11,7 +11,7 @@ pip install elementpath
 pip install requests
 
 Script to extract WIFI passwords from a pc uploading it remotely (shell exploit) and send it to a url "silently"(webhook without leaving files 
-and also can be used offline, physically (rubby ducky)
+and also can be used offline, physically (rubber ducky)
 
 Script para extraer contraseñas WIFI de un pc subiendolo remotamente(shell exploit) y enviarlo a una url "silenciosamente"(webhook) 
 Tambien se puede usar offline, físicamente con un pendrive(rubby ducky)
