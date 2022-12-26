@@ -1,3 +1,7 @@
+'''Thanks for using wifi extractor|Gracias por usar wifi extractor
+    GitHub repository: https://github.com/hrdax/WIFI_Extractor
+    '''
+
 import os, sys, requests, subprocess
 import xml.etree.ElementTree as t
 
