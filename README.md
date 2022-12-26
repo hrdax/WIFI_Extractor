@@ -17,14 +17,23 @@ Usage
 
 Usage: E_WIFI.py [OPTIONS]
 
+
 Options:
+
   -u, --url TEXT      Webhook/POST URL
+  
   -o, --only-webhook  Only send data to webhook (whithout creating the txt
+  
                       file) need to specify the url with -u Envía los datos
+                      
                       solo a la webhook (sin crear el archivo txt) necesitas
+                      
                       especificar la url con -u
+                      
   -v, --version       Imprime la version | Prints the version
+  
   --help              Show this message and exit.
+  
 
 Offline
 
