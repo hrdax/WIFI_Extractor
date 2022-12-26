@@ -11,7 +11,8 @@ WIFIs = []
 
 @click.command()
 @click.option('--url', '-u', default='', help='Webhook/POST URL')
-@click.option('--only-webhook', '-o', is_flag=True, help='Only send data to webhook (no txt file) \n Envía los datos solo a la webhook (sin crear el archivo txt)')
+@click.option('--only-webhook', '-o', is_flag=True, help='''Only send data to webhook (whithout creating the txt file) need to specify the url with -u
+                                                         Envía los datos solo a la webhook (sin crear el archivo txt) necesitas especificar la url con -u''')
 @click.option('--version', '-v', is_flag=True, help='Imprime la version | Prints the version')
 
 #funcion principal
@@ -23,11 +24,14 @@ def main(url, only_webhook, version):
         extractor()
         os.remove('Extracciones.txt')
         urlweb(url)
-        print('Done! | Hecho!')
+        print('\nDone! \n\nHecho!\n')
     elif url != '' and only_webhook == False:
         extractor()
         urlweb(url)
-        print('Done! | Hecho!')
+        print('\nDone! \n\nHecho!\n')
+    else:
+        extractor()
+        print('\nDone! \n\nHecho!\n')
 
 #hara el proceso de extraccion
 def extractor():
