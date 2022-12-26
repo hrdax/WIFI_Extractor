@@ -3,8 +3,11 @@
 you might need this requeriments
 Tal vez podrias necesitar estos requerimientos
 
+
 pip install click
+
 pip install elementpath
+
 pip install requests
 
 Script to extract WIFI passwords from a pc uploading it remotely (shell exploit) and send it to a url "silently"(webhook without leaving files 
