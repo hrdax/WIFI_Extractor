@@ -1,7 +1,7 @@
 # WIFI_Extractor
 
 if you run it with python you might need this requeriments
-Tal vez podrias necesitar estos requerimientos
+Si lo ejecutas con python tal vez podrias necesitar estos requerimientos
 
 
 pip install click
