@@ -37,7 +37,7 @@ def main(url, only_webhook, version):
 #hara el proceso de extraccion
 def extractor(url, only_webhook):
     #crea el archivo txt
-    if url != '' and only_webhook == False:
+    if only_webhook == False:
         txt = open("Extracciones.txt", "w")
 
     #corre el comando en la command prompt
