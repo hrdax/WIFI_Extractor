@@ -14,7 +14,7 @@ Script to extract WIFI passwords from a pc uploading it remotely (shell exploit)
 and also can be used offline, physically (rubber ducky)
 
 Script para extraer contraseñas WIFI de un pc subiendolo remotamente(shell exploit) y enviarlo a una url "silenciosamente"(webhook) 
-Tambien se puede usar offline, físicamente con un pendrive(rubby ducky)
+Tambien se puede usar offline, físicamente con un pendrive(rubber ducky)
 
 Usage: E_WIFI.py [OPTIONS]
 
