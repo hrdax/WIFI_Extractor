@@ -21,7 +21,7 @@ ruta = os.getcwd()
 #recorre los archivos en la ruta
 for archivo in os.listdir(ruta):
     #encuentra los archivos xml exportados y los agrega
-    if archivo.endswith(".xml"):
+    if archivo.startswith("Wi-Fi-") and archivo.endswith(".xml"):
         Archivos_XML_WIFI.append(archivo)
 
 #contador para la lista de wifis
