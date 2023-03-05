@@ -56,19 +56,25 @@ def extractor(url, no_txt,print_output):
     for archivo in Archivos_XML_WIFI:
         tr = t.parse(archivo)
         rt = tr.getroot()
-        ssid = rt[1][0][1].text
-        contrasena = rt[4][0][1][2].text
-        ssid_contrasena = f"Nombre/SSID: {ssid} || CONTRASENA/PASSWORD: {contrasena}"
-        WIFIs.append(ssid_contrasena)
-        os.remove(archivo)
+        #try que verifica si el xml tiene contrasena extraible
         try:
-            txt.write(WIFIs[conta]+"\n")
+            ssid = rt[1][0][1].text
+            contrasena = rt[4][0][1][2].text
+            ssid_contrasena = f"Nombre/SSID: {ssid} || CONTRASENA/PASSWORD: {contrasena}"
+            WIFIs.append(ssid_contrasena)
+            os.remove(archivo)
+            try:
+                txt.write(WIFIs[conta]+"\n")
+            except:
+                pass
+
+            conta = conta + 1
+            if print_output == True:
+                print(f'\n{ssid_contrasena}\n')
+                sleep(0.1)
         except:
-            pass
-        conta = conta + 1
-        if print_output == True:
-            print(f'\n{ssid_contrasena}\n')
-            sleep(0.1)
+            print("Omitting detected WIFI without password(Open WIFI) or WIFI with WPA-Enterprise security... SSID: "+ssid+"\nOmitiendo WIFI detectado sin contrasena(WIFI Libre) o con WPA-Enterprise security... SSID: "+ssid+"\n")
+            os.remove(archivo)
 
     try: 
         #cierra el archivo txt

@@ -29,15 +29,19 @@ conta = 0
 
 #recorre los archivos xml
 for archivo in Archivos_XML_WIFI:
-    tr = t.parse(archivo)
-    rt = tr.getroot()
-    ssid = rt[1][0][1].text
-    contrasena = rt[4][0][1][2].text
-    ssid_contrasena = f"Nombre/SSID: {ssid} || CONTRASEÑA/PASSWORD: {contrasena}"
-    WIFIs.append(ssid_contrasena)
-    txt.write(WIFIs[conta]+"\n")
-    conta = conta + 1
-    os.remove(archivo)
+    #try que verifica si el xml tiene contrasena extraible
+    try:
+        tr = t.parse(archivo)
+        rt = tr.getroot()
+        ssid = rt[1][0][1].text
+        contrasena = rt[4][0][1][2].text
+        ssid_contrasena = f"Nombre/SSID: {ssid} || CONTRASEÑA/PASSWORD: {contrasena}"
+        WIFIs.append(ssid_contrasena)
+        txt.write(WIFIs[conta]+"\n")
+        conta = conta + 1
+        os.remove(archivo)
+    except:
+        os.remove(archivo)
 
 #ciera el archivo txt
 txt.close()
