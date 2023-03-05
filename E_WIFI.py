@@ -17,7 +17,7 @@ WIFIs = []
 #funcion principal
 def main(url, no_txt, version,print_output):
     if version == True:
-        print('\nWIFI Extractor\n\nVersion 1.2\n')
+        print('\nWIFI Extractor\n\nVersion 1.2.1\n')
         sys.exit()
     elif url != '' and no_txt == True:
         extractor(url, no_txt,print_output)
