@@ -60,18 +60,41 @@ def extractor(url, no_txt,print_output):
         try:
             ssid = rt[1][0][1].text
             contrasena = rt[4][0][1][2].text
+            protected = rt[4][0][1][1].text
             ssid_contrasena = f"Nombre/SSID: {ssid} || CONTRASENA/PASSWORD: {contrasena}"
-            WIFIs.append(ssid_contrasena)
+            
+            
             os.remove(archivo)
-            try:
-                txt.write(WIFIs[conta]+"\n")
-            except:
-                pass
+            
 
             conta = conta + 1
             if print_output == True:
                 print(f'\n{ssid_contrasena}\n')
                 sleep(0.1)
+            if protected == "true":
+                print("Detected encrypted Wifi do you want to try crack it? (You need authority system for this to be successful) SSID: "+ssid)
+                input("Y/N: ")
+                subprocess.run(["./Wdecryptor.exe", "--key", contrasena])
+                # Verificar si el archivo de salida existe
+                pdecryptedfile = ruta + "/decrypted.txt"
+                if os.path.isfile(pdecryptedfile):
+                    # Leer el contenido del archivo de salida
+                    with open(pdecryptedfile, 'r') as f:
+                        contrasena = f.read()
+                        ssid_contrasena = f"Nombre/SSID: {ssid} || CONTRASENA/PASSWORD: {contrasena}"
+
+                    # Eliminar el archivo de salida
+                    os.remove(pdecryptedfile)
+                    
+            WIFIs.append(ssid_contrasena)
+
+            
+            
+            try:
+                txt.write(WIFIs[conta-1]+"\n")
+            except:
+                pass
+
         except:
             print("Omitting detected WIFI without password(Open WIFI) or WIFI with WPA-Enterprise security... SSID: "+ssid+"\nOmitiendo WIFI detectado sin contrasena(WIFI Libre) o con WPA-Enterprise security... SSID: "+ssid+"\n")
             os.remove(archivo)
