@@ -63,29 +63,31 @@ def extractor(url, no_txt,print_output):
             protected = rt[4][0][1][1].text
             ssid_contrasena = f"Nombre/SSID: {ssid} || CONTRASENA/PASSWORD: {contrasena}"
             
-            
-            os.remove(archivo)
-            
-
+      
             conta = conta + 1
             if print_output == True:
                 print(f'\n{ssid_contrasena}\n')
                 sleep(0.1)
             if protected == "true":
                 print("Detected encrypted Wifi do you want to try crack it? (You need authority system for this to be successful) SSID: "+ssid)
-                input("Y/N: ")
-                subprocess.run(["./Wdecryptor.exe", "--key", contrasena])
-                # Verificar si el archivo de salida existe
-                pdecryptedfile = ruta + "/decrypted.txt"
-                if os.path.isfile(pdecryptedfile):
-                    # Leer el contenido del archivo de salida
-                    with open(pdecryptedfile, 'r') as f:
-                        contrasena = f.read()
-                        ssid_contrasena = f"Nombre/SSID: {ssid} || CONTRASENA/PASSWORD: {contrasena}"
+                ans = input("Y/N: ")
+                if ans == "Y" or ans == "y":
+                    subprocess.run(["./Wdecryptor.exe", "--key", contrasena])
+                    # Verificar si el archivo de salida existe
+                    pdecryptedfile = ruta + "/decrypted.txt"
+                    if os.path.isfile(pdecryptedfile):
+                        # Leer el contenido del archivo de salida
+                        with open(pdecryptedfile, 'r') as file:
+                            contrasena = file.read()
+                            ssid_contrasena = f"Nombre/SSID: {ssid} || CONTRASENA/PASSWORD: {contrasena}"
+                            
+                        # Eliminar el archivo de salida    
+                        os.remove(pdecryptedfile)
+                elif ans == "N" or ans == "n":
+                    print("Skipping...")
 
-                    # Eliminar el archivo de salida
-                    os.remove(pdecryptedfile)
-                    
+            
+            os.remove(archivo)        
             WIFIs.append(ssid_contrasena)
 
             
