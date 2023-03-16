@@ -77,7 +77,8 @@ Podras ver en el webhook que sera enviado con la contrasena desencriptada
 
 Also you can use the E_WIFI to extract the keys and then manually use Wdecryptor with a opened system authority cmd
 Tambien podras usar E_WIFI para extraer las keys y luego manualmente usar wdecryptor con una cmd abierta con system authority
-![ejemplo nueva funcion3](https://user-images.githubusercontent.com/74321905/225492473-c7c2d505-e762-40c4-b96c-6e7045184f49.png)
+
+![ejemplo nueva funcion3](https://user-images.githubusercontent.com/74321905/225493385-921a6a0f-230c-4a2f-a83c-fa020282db92.png)
 
 it will be saved in a "decrypted.txt" file also with the following format "Encrypted Key : Decrypted"
 tambien se guardara en un archivo "decrypted.txt" con el siguiente formato "Key Encriptada : Descriptada"
