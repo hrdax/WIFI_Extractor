@@ -61,7 +61,7 @@ Creates a txt with the WIFI's ssid and passwords stored in the local machine
 
 Crea un txt con los nombres y las contrasenas WIFI guardadas en la maquina local
 
-<b>Online</b>
+<b>* Online</b>
 
 Usages
 
@@ -90,7 +90,7 @@ PD:
 
     EL TXT SE CREA POR DEFECTO -n APAGA LA CREACION
 
-<b>V1.3 and Wdecryptor Examples</b>
+<b>* V1.3 and Wdecryptor Examples</b>
 
 Quick Example of the new function (in the following hours I will update a more detailed one)
 
