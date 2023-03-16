@@ -82,7 +82,7 @@ Podras ver en el webhook que sera enviado con la contrasena desencriptada
 ![ejemplo nueva funcion2](https://user-images.githubusercontent.com/74321905/225492226-b03d05e1-4f79-4f88-b872-04df838bc34d.png)
 
 
-Also you can use the E_WIFI to extract the keys and then manually use Wdecryptor with a opened system authority cmd
+Also you can use the E_WIFI to extract the keys and then manually use Wdecryptor with an opened system authority cmd
 Tambien podras usar E_WIFI para extraer las keys y luego manualmente usar wdecryptor con una cmd abierta con system authority
 
 ![ejemplo nueva funcion3](https://user-images.githubusercontent.com/74321905/225493385-921a6a0f-230c-4a2f-a83c-fa020282db92.png)
