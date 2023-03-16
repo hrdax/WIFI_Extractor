@@ -1,0 +1,13 @@
+﻿  Wdecryptor.cpp
+D:\proyectos pruebas c#\Wdecryptor\Wdecryptor\Wdecryptor.cpp(18,24): warning C4834: se descarta el valor devuelto de la función con el atributo "nodiscard"
+D:\proyectos pruebas c#\Wdecryptor\Wdecryptor\Wdecryptor.cpp(56,30): warning C4267: 'inicializando': conversión de 'size_t' a 'int'; posible pérdida de datos
+D:\proyectos pruebas c#\Wdecryptor\Wdecryptor\Wdecryptor.cpp(62,28): warning C4477: 'sscanf_s' : la cadena de formato '%02x' requiere un argumento de tipo 'unsigned int *', pero el argumento variádico 1 tiene el tipo 'BYTE *'
+D:\proyectos pruebas c#\Wdecryptor\Wdecryptor\Wdecryptor.cpp(62,28): message : considere el uso de ' %hhx' en la cadena de formato
+D:\proyectos pruebas c#\Wdecryptor\Wdecryptor\Wdecryptor.cpp(62,67): warning C4474: "sscanf_s": se pasaron demasiados argumentos para la cadena de formato
+D:\proyectos pruebas c#\Wdecryptor\Wdecryptor\Wdecryptor.cpp(62,67): message : los marcadores de posición y sus parámetros esperan 1 argumentos variádicos, pero se proporcionaron 2
+  Generando código
+  1 of 190 functions ( 0.5%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Generación de código finalizada
+  Wdecryptor.vcxproj -> D:\proyectos pruebas c#\Wdecryptor\x64\Release\Wdecryptor.exe
