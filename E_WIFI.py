@@ -94,27 +94,34 @@ def extractor(url, no_txt,print_output, admin):
                     sleep(0.7)
                     # Intenta obtener un shell de sistema con la ayuda de PsExec y ejecuta el wdecryptor
                     try:
-                        output = subprocess.run(['psexec.exe', '-accepteula', '-s', 'cmd', '/c', 'echo', '"[*]Done!|Hecho!"', '&','whoami'], capture_output=True, text=True, shell=False)
-                        print(output.stdout)
-                        sleep(0.8)
-                        cmd = ['psexec.exe', '-nobanner','-accepteula', '-s', 'cmd', '/c', ruta + '\Wdecryptor.exe', '--key', contrasena]
-                        p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-                        # Leer la salida del wdecryptor en tiempo real
-                        for line in iter(p.stdout.readline, b''):
-                            sleep(0.5)
-                            print(line.decode().strip())
-                        # Espera a que el proceso termine
-                        p.wait()
-                        print("\n[*] Done!\n[*] Hecho!\n")
+                        #verifica que este Wdecryptor para poder desencriptar
+                        if os.path.isfile("Wdecryptor.exe"):
+                            output = subprocess.run(['psexec.exe', '-accepteula', '-s', 'cmd', '/c', 'echo', '"[*]Done!|Hecho!"', '&','whoami'], capture_output=True, text=True, shell=False)
+                            print(output.stdout)
+                            sleep(0.8)
+                            cmd = ['psexec.exe', '-nobanner','-accepteula', '-s', 'cmd', '/c', ruta + '\Wdecryptor.exe', '--key', contrasena]
+                            p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+                            # Leer la salida del wdecryptor en tiempo real
+                            for line in iter(p.stdout.readline, b''):
+                                sleep(0.5)
+                                print(line.decode().strip())
+                            # Espera a que el proceso termine
+                            p.wait()
+                            print("\n[*] Done!\n[*] Hecho!\n")
+                        else:
+                            print("[*] Couldn't find Wdecryptor.exe, make sure it's in the same folder as the program...\n")
+                            print("[*] No se pudo encontrar Wdecryptor.exe, asegurate de que este en la misma carpeta que el programa...\n")
+                        
                     # Si no se pudo obtener un shell de sistema, muestra un mensaje de error
                     except:
+                        
                         if os.path.isfile("psexec.exe"):
-                            print("[-] Couldn't get a system shell, try running the program as administrator...\n")
-                            print("[-] No se pudo obtener un system shell, intenta ejecutar el programa como administrador...\n")
+                            print("[*] Couldn't get a system shell, try running the program as administrator...\n")
+                            print("[*] No se pudo obtener un system shell, intenta ejecutar el programa como administrador...\n")
                             pass
                         else:
-                            print("[-] Couldn't find psexec.exe, make sure it's in the same folder as the program...\n")
-                            print("[-] No se pudo encontrar psexec.exe, asegurate de que este en la misma carpeta que el programa...\n")
+                            print("[*] Couldn't find psexec.exe, make sure it's in the same folder as the program...\n")
+                            print("[*] No se pudo encontrar psexec.exe, asegurate de que este en la misma carpeta que el programa...\n")
 
                         
                     
