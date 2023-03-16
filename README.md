@@ -1,6 +1,12 @@
 # WIFI_Extractor
 
+DISCLAIMER
+This is not made for illegal or malicious purposes, I consider it like a post-exploitation tool with legal authority before of the use in whatever location you are doing your pentest to check weak and reutilization of passwords, I'm not responsible of any malicious acts that you may do.
+
+Esto no está hecho con fines ilegales o maliciosos, lo considero como una herramienta de post-explotación con autoridad legal antes del uso en cualquier lugar donde esté haciendo su pentest para verificar la debilidad y la reutilización de contraseñas, no soy responsable de cualquier acto malicioso que puedas hacer.
+
 if you run it with python you might need this requeriments
+
 Si lo ejecutas con python tal vez podrias necesitar estos requerimientos
 
 
