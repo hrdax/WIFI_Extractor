@@ -29,15 +29,23 @@ Puede detecar contraseñas protegidas localmente y tratar de descriptarlas, nece
 
 Usage: E_WIFI.exe [OPTIONS]
 
+
 Options:
+
   -u, --url TEXT      Webhook/POST URL
+  
   -n, --no-txt        No crea el archivo txt | Doesn't create the txt file
+  
   -v, --version       Imprime la version | Prints the version
+  
   -p, --print-output  Muestra la salida en la terminal | Shows the output in
                       the terminal
+                      
   -a, --admin         Indica si la consola actual tiene privilegios de admin |
                       Indicates if the current console has admin privileges
+                      
   --help              Show this message and exit.
+  
   
 
 Offline
